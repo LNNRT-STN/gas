@@ -79,6 +79,7 @@ fig_production.update_layout(height=600, width=1000)
 
 # Create Dash app
 app = Dash(__name__)
+server = app.server
 
 app.layout = html.Div([
     html.H1("Energy Data Visualization"),
