@@ -2,6 +2,13 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 from dash import Dash, dcc, html
+from flask import Flask
+
+# Create a Flask server
+server = Flask(__name__)
+
+# Create a Dash app
+app = Dash(__name__, server=server)
 
 # Consolidated data
 data = {
@@ -77,9 +84,7 @@ fig_production = px.choropleth(map_df_production, locations="iso_alpha", color="
 fig_production.update_geos(projection_type="natural earth")
 fig_production.update_layout(height=600, width=1000)
 
-# Create Dash app
-app = Dash(__name__)
-
+# Define the layout of the Dash app
 app.layout = html.Div([
     html.H1("Energy Data Visualization"),
     html.Div([html.H2("Reserves-to-Production (R/P) Ratio"), dcc.Graph(figure=fig_rp)]),
