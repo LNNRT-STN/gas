@@ -13,8 +13,8 @@ app = Dash(__name__, server=server)
 # Consolidated data
 data = {
     'rp_ratio': {
-        'Region': ['Middle East', 'CIS', 'Africa', 'S. & Cent. America', 'Asia Pacific', 'Europe', 'North America'],
-        'R/P Ratio': [110.4, 70.5, 55.7, 51.7, 25.4, 14.5, 13.7]
+        'Region': ['World', 'Middle East', 'CIS', 'Africa', 'S. & Cent. America', 'Asia Pacific', 'Europe', 'North America'],
+        'R/P Ratio': [48.8, 110.4, 70.5, 55.7, 51.7, 25.4, 14.5, 13.7]
     },
     'hydrogen_production': {
         'Region': ['North America', 'S. & Cent. America', 'Europe', 'CIS', 'Middle East', 'Africa', 'Asia Pacific', 'OECD', 'Non-OECD'],
@@ -35,12 +35,14 @@ data = {
 region_to_iso = {
     'North America': ['USA', 'CAN', 'MEX'],
     'CIS': ['RUS', 'KAZ', 'UZB', 'TKM', 'KGZ', 'TJK'],
-    'Middle East': ['SAU', 'IRN', 'IRQ', 'KWT', 'ARE', 'QAT', 'OMN', 'YEM', 'SYR', 'JOR', 'LBN', 'ISR'],
+    'Middle East': ['SAU', 'IRN', 'IRQ', 'KWT', 'ARE', 'QAT', 'OMN', 'YEM', 'SYR', 'JOR', 'LBN'],
     'Africa': ['DZA', 'AGO', 'BEN', 'BWA', 'BFA', 'BDI', 'CPV', 'CMR', 'CAF', 'TCD', 'COM', 'COG', 'COD', 'DJI', 'EGY', 'GNQ', 'ERI', 'SWZ', 'ETH', 'GAB', 'GMB', 'GHA', 'GIN', 'GNB', 'CIV', 'KEN', 'LSO', 'LBR', 'LBY', 'MDG', 'MWI', 'MLI', 'MRT', 'MUS', 'MAR', 'MOZ', 'NAM', 'NER', 'NGA', 'RWA', 'STP', 'SEN', 'SYC', 'SLE', 'SOM', 'ZAF', 'SSD', 'SDN', 'TZA', 'TGO', 'TUN', 'UGA', 'ZMB', 'ZWE'],
     'S. & Cent. America': ['ARG', 'BOL', 'BRA', 'CHL', 'COL', 'ECU', 'GUY', 'PRY', 'PER', 'SUR', 'URY', 'VEN'],
-    'Asia Pacific': ['AFG', 'AUS', 'BGD', 'BTN', 'BRN', 'KHM', 'CHN', 'FJI', 'IND', 'IDN', 'JPN', 'KAZ', 'KIR', 'PRK', 'KOR', 'LAO', 'MYS', 'MDV', 'MHL', 'FSM', 'MNG', 'MMR', 'NPL', 'NZL', 'PAK', 'PLW', 'PNG', 'PHL', 'WSM', 'SGP', 'SLB', 'LKA', 'THA', 'TLS', 'TON', 'TUV', 'VUT', 'VNM'],
-    'Europe': ['ALB', 'AND', 'ARM', 'AUT', 'AZE', 'BLR', 'BEL', 'BIH', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'GEO', 'DEU', 'GRC', 'HUN', 'ISL', 'IRL', 'ITA', 'KAZ', 'XKX', 'LVA', 'LIE', 'LTU', 'LUX', 'MLT', 'MDA', 'MCO', 'MNE', 'NLD', 'MKD', 'NOR', 'POL', 'PRT', 'ROU', 'RUS', 'SMR', 'SRB', 'SVK', 'SVN', 'ESP', 'SWE', 'CHE', 'TUR', 'UKR', 'GBR']
+    'Asia Pacific': ['AFG', 'AUS', 'BGD', 'BTN', 'BRN', 'KHM', 'CHN', 'FJI', 'IND', 'IDN', 'JPN', 'KIR', 'PRK', 'KOR', 'LAO', 'MYS', 'MDV', 'MHL', 'FSM', 'MNG', 'MMR', 'NPL', 'NZL', 'PAK', 'PLW', 'PNG', 'PHL', 'WSM', 'SGP', 'SLB', 'LKA', 'THA', 'TLS', 'TON', 'TUV', 'VUT', 'VNM'],
+    'Europe': ['ALB', 'AND', 'ARM', 'AUT', 'AZE', 'BLR', 'BEL', 'BIH', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN', 'FRA', 'GEO', 'DEU', 'GRC', 'HUN', 'ISL', 'IRL', 'ITA', 'XKX', 'LVA', 'LIE', 'LTU', 'LUX', 'MLT', 'MDA', 'MCO', 'MNE', 'NLD', 'MKD', 'NOR', 'POL', 'PRT', 'ROU', 'SMR', 'SRB', 'SVK', 'SVN', 'ESP', 'SWE', 'CHE', 'TUR', 'UKR', 'GBR'],
+    'Israel': ['ISR']  # Israel is placed in a separate category due to its unique geopolitical situation.
 }
+
 
 # Create DataFrames
 df_rp = pd.DataFrame(data['rp_ratio'])
